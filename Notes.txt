@@ -1,0 +1,201 @@
+React is JS library that is used to create UI.
+
+To write JS in HTML - 
+
+<div id="root">
+        
+    </div>
+
+    <script>
+        const heading = document.createElement("h1");
+        heading.innerHTML = "Hello World from JS";
+
+        const root = document.getElementById("root");
+        root.appendChild(heading);
+    </script>
+
+First react program in HTML - 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <script>
+        const heading = React.createElement("h1", {}, "Hello World from React"); //h1 element inside react. createElement is a core thing of JS
+
+        console.log(heading); //it will return a raect element, a JS object
+
+        const root = ReactDOM.createRoot(document.getElementById("root")); //Creating a root and rendering inside it is a work of reactDOM
+
+        root.render(heading); //we are rendering the root, this is converting the React element into H1 tag
+    </script>
+  </body>
+</html>
+
+createElement takes 3 parameters (tag, Attributes to tag, "what we want to pass in the tag")
+In the last parameters we can pass multiple children but with a help of array.
+Heading - It is a React h1 element, It is a JS object
+
+Creating Nested structure and sibling inside react
+/*
+<div id = "parent">
+    <div id = "child">
+        <h1>I am H1 nested tag</h1>
+        <h2>I am H1 nested tag</h2>
+    </div>
+</div>
+
+creating this above nested thing in JS
+*/
+
+const parent = React.createElement(
+  "div",
+  { id: "parent" },
+  React.createElement("div", { id: "child" }, [
+    React.createElement("h1", {}, "I am H1 nested tag"),
+    React.createElement("h2", {}, "I am H2 nested tag"),
+  ])
+);
+
+console.log(parent);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(parent);
+
+reactElement(object) => HTML(Browser Understands) by .render
+
+/*
+<div id = "parent">
+    <div id = "child">
+        <h1>I am H1 nested tag</h1>
+        <h2>I am H1 nested tag</h2>
+    </div>
+    <div id = "child2">
+        <h1>I am H1 nested tag</h1>
+        <h2>I am H1 nested tag</h2>
+    </div>
+</div>
+
+creating this above nested thing in JS
+*/
+
+const parent = React.createElement("div", { id: "parent" }, [
+  React.createElement("div", { id: "child" }, [
+    React.createElement("h1", {}, "I am H1 nested tag"),
+    React.createElement("h2", {}, "I am H2 nested tag"),
+  ]),
+  React.createElement("div", { id: "child2" }, [
+    React.createElement("h1", {}, "I am H1 nested tag of child2"),
+    React.createElement("h2", {}, "I am H2 nested tag of child2"),
+  ]),
+]);
+
+console.log(parent);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(parent);
+
+To avoid this type of structures we use JSX, Which will make things easy
+
+In the HTML file
+<div id = "root"></div>
+
+If anything is present inside the root it will be replaced by render giving the control to React.
+It will be replaced not appended.
+
+Beauty of React - 
+Order of Files matters.
+We can define where will our react code will work.
+
+EP2 Notes - 
+
+NPM is not node package manager, globally it is used as abbreviation
+
+Package.json is the configuration file for npm.
+
+npm is a package manager that manages the packages that we install in our system.
+Sometime packages are know as dependencies.
+
+The most important package in our product is a bundler.
+What is a bundler - Bundler bundles/packages our app properly so that it can be pushed into production. 
+Ex : Webpack, Parcel
+
+There are 2 types of dependencies an app can have
+Dev dependencies - These are the packages that are only needed for development/testing purposes.
+Normal dependencies - these are the packages that are necessary for the application to run in its production environment
+
+To install dev dependencies - npm install -D <package-name>
+
+Installing parcel bundler - npm install -D parcel
+"devDependencies": {
+    "parcel": "^2.12.0"
+  }
+
+What is "^"? - It is Carat, Suppose our dependency got a "minor version update" then it will do it automatically. It is safe and recommended like 2.12.0 -> 2.12.1
+What is "~"? - It is tilde, Suppose our dependency got a "major version update" then it will do it automatically. like 2.9.9 -> 3.0.0
+
+File -> package-lock.json 
+It keeps the track of exact version of dependencies that is being installed. It keeps the record of each and every exact version of the package/dependency. It keeps the record of exact version so that when the code is pushed into production it don't break.
+
+Folder -> node_modules 
+This contains the data of the packages that are needed by our project. It acts like a database
+
+Transitive dependency - When a package have another package as a dependency and that package have another package as dependency it is then know as Transitive dependency.
+
+Every package have its own dependencies, devDependencies and package.json files.
+
+We shouldn't push node_modules to production/github, because
+We always need to push package.json, package-lock.json to production because it maintains the record of our dependencies that were used in our app
+If we have package.json, package-lock.json then we can regenerate node_modules Folder by "npm install".
+Whatever we can regenerate dont push it to production, we only need to push essential files and folders.
+
+Igniting our app - npx parcel index.html(source file)
+
+What is npx? - It means executing the package that we have installed using npm
+
+CDN links are not a good way to bring react in our project, because making network calls multiple time is a costly operation we should call form node_modules and after every version upgrades pf react we need to update the links manually.
+
+<script type="module" src="./App.js"></script>
+we need to tell the browser that it is not normal browser script it is a module because @parcel/transformer-js: Browser scripts cannot have imports or exports.
+
+Parcel uses :
+- Dev Build
+- Local Server
+- HMR : Hot Model Replacement, It is when we save our file the changes that we made in our file, the changes immediately reflects on browser
+- File watching algorithm - written in c++ , it tracks each and every changes made in our project
+- Faster builds because of Parcel cache
+- Image Optimization
+- Minifiaction of file while creating production projects
+- Bundling
+- compress
+- Consistent Hashing 
+- Code Splitting
+- Differential Bundling - It gives the support of older browser
+- Diagnostic - beautiful errors in terminal 
+- Error handling
+- host apps on https
+- Tree Shaking Algorithm - will remove unused code
+- Different dev and production bundles
+
+Production Build our App - npx parcel build index.html(source file)
+When we prod build we will run into an error that is in package.json file that is "main" : App.js basically while we are executing parcel we already tell parcel about our entry point we dont need to sepcify that again.
+
+Folder -> dist : It keeps the files that when we exec npx parcel index.html it creates a dev build and host that to port 1234. Those dev build files are kept in dist folder.
+
