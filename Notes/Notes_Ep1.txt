@@ -1,0 +1,126 @@
+React is JS library that is used to create UI.
+
+To write JS in HTML - 
+
+<div id="root">
+        
+    </div>
+
+    <script>
+        const heading = document.createElement("h1");
+        heading.innerHTML = "Hello World from JS";
+
+        const root = document.getElementById("root");
+        root.appendChild(heading);
+    </script>
+
+First react program in HTML - 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+
+    <script>
+        const heading = React.createElement("h1", {}, "Hello World from React"); //h1 element inside react. createElement is a core thing of JS
+
+        console.log(heading); //it will return a raect element, a JS object
+
+        const root = ReactDOM.createRoot(document.getElementById("root")); //Creating a root and rendering inside it is a work of reactDOM
+
+        root.render(heading); //we are rendering the root, this is converting the React element into H1 tag
+    </script>
+  </body>
+</html>
+
+createElement takes 3 parameters (tag, Attributes to tag, "what we want to pass in the tag")
+In the last parameters we can pass multiple children but with a help of array.
+Heading - It is a React h1 element, It is a JS object
+
+Creating Nested structure and sibling inside react
+/*
+<div id = "parent">
+    <div id = "child">
+        <h1>I am H1 nested tag</h1>
+        <h2>I am H1 nested tag</h2>
+    </div>
+</div>
+
+creating this above nested thing in JS
+*/
+
+const parent = React.createElement(
+  "div",
+  { id: "parent" },
+  React.createElement("div", { id: "child" }, [
+    React.createElement("h1", {}, "I am H1 nested tag"),
+    React.createElement("h2", {}, "I am H2 nested tag"),
+  ])
+);
+
+console.log(parent);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(parent);
+
+reactElement(object) => HTML(Browser Understands) by .render
+
+/*
+<div id = "parent">
+    <div id = "child">
+        <h1>I am H1 nested tag</h1>
+        <h2>I am H1 nested tag</h2>
+    </div>
+    <div id = "child2">
+        <h1>I am H1 nested tag</h1>
+        <h2>I am H1 nested tag</h2>
+    </div>
+</div>
+
+creating this above nested thing in JS
+*/
+
+const parent = React.createElement("div", { id: "parent" }, [
+  React.createElement("div", { id: "child" }, [
+    React.createElement("h1", {}, "I am H1 nested tag"),
+    React.createElement("h2", {}, "I am H2 nested tag"),
+  ]),
+  React.createElement("div", { id: "child2" }, [
+    React.createElement("h1", {}, "I am H1 nested tag of child2"),
+    React.createElement("h2", {}, "I am H2 nested tag of child2"),
+  ]),
+]);
+
+console.log(parent);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(parent);
+
+To avoid this type of structures we use JSX, Which will make things easy
+
+In the HTML file
+<div id = "root"></div>
+
+If anything is present inside the root it will be replaced by render giving the control to React.
+It will be replaced not appended.
+
+Beauty of React - 
+Order of Files matters.
+We can define where will our react code will work.
+
