@@ -1,22 +1,21 @@
 {
+  "name": "ep3",
+  "version": "1.0.0",
+  "description": "EP3",
+  "main": "App.js",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-    "test" : "jest"
+    "test": "jest"
   },
-  "name": "ep1",
-  "version": "1.0.0",
-  "description": "React Course",
-  
-  "keywords": [],
   "author": "Promit Dey",
   "license": "ISC",
-  "devDependencies": {
-    "parcel": "^2.12.0",
-    "process": "^0.11.10"
-  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
   }
 }

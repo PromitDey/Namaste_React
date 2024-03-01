@@ -199,3 +199,110 @@ When we prod build we will run into an error that is in package.json file that i
 
 Folder -> dist : It keeps the files that when we exec npx parcel index.html it creates a dev build and host that to port 1234. Those dev build files are kept in dist folder.
 
+EP3 Notes -
+
+JSX :
+- It is just a syntax
+- JSX is not HTML inside JS
+- It is a HTML like syntax in JS
+- JSX is Different, React is Different
+- It can be nested also
+- We can inject JS expressions inside JSX within {JS Expressions}
+- JSX prevents cross-site scripting, It means if any api is passing malicious data and that is injected in our jsx then jsx will sanitize it 
+
+
+JSX => Babel Transpiles it => React.createElement => object => HTMLElement(render)
+const jsxHeading = <h1 id = "heading">Namaste React using JSX🚀</h1>
+
+This above code is not pure JS, JS engines doesn't understand it and by our browser
+These JSX codes are transpiled before it reaches the JS engine so that browsers can understand it. It is managed my parcel and transpiled by Babel
+
+If we write JSX in multiple lines we need to use (jsx code) because babel need to know where is our jsx starting and ending.
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+//Reacr.createElement => object => renderToDOM => HTMLElement
+
+// const heading = React.createElement(
+//   "h1",
+//   { id: "heading" },
+//   "Namaste-React 🚀"
+// );
+
+//JSX
+//JSX => React.createElement => object => HTMLElement(render)
+const jsxHeading = (
+  <h1 className="head" tabIndex="5">
+    Namaste React using JSX🚀
+  </h1>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(jsxHeading);
+
+
+React Components - 
+- Everything is a component in React
+
+Two types of Components in React :
+- Class Based Component : OLD 
+- Funcitonal Component : NEW 
+
+What is React Funcitonal Component - It is a normal JS Function which return some jsx
+
+const HeadingComponent = () => {
+  return <h1 className="heading">Namaste React Functional Component</h1>;
+};
+
+const HeadingComponent2 = () => (
+    <h1 className="heading">Namaste React Functional Component2</h1>
+);
+
+Both of the above codes are same
+
+root.render(<ComponentName />); //we can render React Component like this
+
+What is component composition - Composing two components inside one another is called component composition
+For Ex : 
+const Title = () => (
+  <h1> Hi, I'm Title </h1>;
+);
+
+Const Heading = () => (
+  <div>
+    <Title />
+    <h1>Hi, I'm Heading</h1>
+  </div>
+);
+
+How to put react element inside react component ?
+const title = (
+  <h1>Namast React using JSX</h1>
+);
+
+Const Heading = () => (
+  <div>
+    {title}
+    <h1>Hi, I'm Heading</h1>
+  </div>
+);
+
+How to put react element inside react element ?
+const elem = <p> Hi </p>;
+
+const title = <h1> {elem} Namaste using JSX</h1>;
+
+const HeadingComponent = () => (
+  <div>
+    {title}
+    <h1 className="heading">Namaste React Functional Component</h1>
+  </div>
+);
+
+How to put react component inside react component ?
+
+Why my code is readable? - Because it uses JSX
+
+
