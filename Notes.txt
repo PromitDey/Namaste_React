@@ -306,3 +306,53 @@ How to put react component inside react component ?
 Why my code is readable? - Because it uses JSX
 
 
+EP4 Notes - 
+
+What are Props? - Passing a prop to a component is same as passing a argument to a function.
+Ex : 
+<RestaurantCard resName = "ABC" cuisine = "Asian" />
+<RestaurantCard resName = "XYZ" cuisine = "Korean" />
+
+Props are used to avoid hardcoding
+
+Config Driven UI - Controlling your UI using data that is given by the database. It is used because suppose there is Swiggy a food delivery app that operates at pan India level but the developers will not make UI for every Different city or regions they make a single UI and it is controlled by the data that is coming from the database.
+
+Whenever we use "map" function we should always use "key" because it optimizes the renders in react app.
+Never use indexes as key.
+Try to use unique IDs as key if possible if not use indexes but never forget to use keys while using map function.
+
+Optional chaining - 
+The ?. is known as the optional chaining operator in JavaScript. It is used to access properties of an object without causing an error if the property does not exist or if the object itself is null or undefined.
+
+In your example resData?.info, if resData is null or undefined, the expression will short-circuit and return undefined. This means that if resData is null or undefined, trying to access the info property won't throw an error. If resData is an object with an info property, its value will be returned.
+
+This feature is particularly useful when dealing with nested objects or accessing properties that might not exist in all cases, as it helps prevent "Cannot read property 'x' of undefined" errors. It's part of ECMAScript 2020 and is supported in modern JavaScript environments.
+
+EP5 Notes - 
+
+There are 2 types of export and import - 
+
+- default export/import 
+    export default <component_name>;
+    import <component_name> from 'file_path';
+
+- named export/import used to export/import multiple things from one js file
+    export const <component_name>;
+    import {component_name} from 'file_path';
+
+React Hooks - It is a normal JS function, It comes with some extra super powers that are given by react
+
+Types of hooks :
+- useState() -> superpowerful state variables in react 
+- useEffect() -> 
+
+Whenever a state variable changes react will re render the component.
+
+React uses Reconciliation Algorithm(React Fiber) 
+Reconciliation Algorithm - When somethinf changes on the UI.
+In React 16, the Diff Algo came out to update the DOM
+
+Virtual DOM - It is a representation of an Actual DOM
+
+Diff Algorithm - It finds out the difference between the previous virtual DOM and the updated virtual DOM. And after it find out the diff it keeps updating the actual DOM on every render.
+
