@@ -346,7 +346,7 @@ Types of hooks :
 - useState() -> superpowerful state variables in react 
 - useEffect() -> 
 
-Whenever a state variable changes react will re render the component.
+Whenever a state variable changes react will re render the component. React triggers a Reconciliation cycle.
 
 React uses Reconciliation Algorithm(React Fiber) 
 Reconciliation Algorithm - When somethinf changes on the UI.
@@ -356,3 +356,15 @@ Virtual DOM - It is a representation of an Actual DOM
 
 Diff Algorithm - It finds out the difference between the previous virtual DOM and the updated virtual DOM. And after it find out the diff it keeps updating the actual DOM on every render.
 
+EP6 Notes - 
+
+Monolith and Micro-service Architecture
+
+useEffect Hook - 
+- It takes two argument 
+  - callback function
+  - dependency array
+  - The callback function will be executed after it has been rendered once
+  - 
+
+1:10:15 EP6
