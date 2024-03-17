@@ -363,8 +363,54 @@ Monolith and Micro-service Architecture
 useEffect Hook - 
 - It takes two argument 
   - callback function
-  - dependency array
+  - dependency array: It changes the behaviour of the callback function of useEffect hook
   - The callback function will be executed after it has been rendered once
   - 
+- If no dependecy array callback function is called on every render
+- If there is an empty dependency array[], useEffect is called on intial render(just once)
+- If there is something as dependency in the dependency array then useEffect will be called whenever the dependency changes
 
-1:10:15 EP6
+EP7 Notes - 
+
+- Never call the useState hook outside the component.
+- call hooks on the top of the component.
+- Never create hooks in if/else or inside conditions it will cause inconsistency.
+
+There are 2 types of routing in web application:
+- Client Side Routing: When the web app is loaded the component also gets loaded with that when we change pages the components only gets replaced no network call are made. This is why react is single page application.
+- Server Side Routing: when we do a fetch call to get some pages and its returned by servers. It makes network calls.
+
+React Routes : React-router-dom
+- createBrowserRouter: It takes list and have objects inside list with object contents as "path", "element", "children"
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    loader: rootLoader,
+    children: [
+      {
+        path: "team",
+        element: <Team />,
+        loader: teamLoader,
+      },
+    ],
+  },
+]);
+
+- Router Provider: All data router objects are passed to this component to render your app and enable the rest of the data APIs.
+root.render(<RouterProvider router={appRouter} />);
+
+React Router Components:
+
+-Link: Use this in place of anchor tag like <Link to = "/">Home</Limk
+- Outlet: An <Outlet> should be used in parent route elements to render their child route elements. This allows nested UI to show up when child routes are rendered. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.
+
+React Router Hooks: 
+
+- useRouteError: Inside of an errorElement, this hook returns anything thrown during an action, loader, or rendering. Note that thrown responses have special treatment, see isRouteErrorResponse for more information.
+like err.status , err.statusText, etc.
+
+Dynamic Routing :
+- path: "/restaurant/:resId"
+the :resId is the Dynamic route that will be changed for every other restaurant.
+

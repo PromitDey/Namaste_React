@@ -38,10 +38,19 @@
   margin: 10px;
 }
 
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .res-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.res-container-Link {
+  color: inherit;
 }
 
 .filter {
@@ -135,4 +144,98 @@
   border-radius: 20px;
   background-color: lightgray;
   margin: 5px;
+}
+
+.res-info {
+  justify-content: space-between;
+  padding-right: 350px;
+  padding-left: 350px;
+  margin-top: 50px;
+}
+
+.res-menu-header {
+  justify-content: space-between;
+  margin-top: 50px;
+  display: flex;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+.box {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.box > li {
+  padding: 2px;
+}
+
+.res-menu-header-list {
+  list-style-type: none;
+  font-size: small;
+  color: rgb(141, 139, 139);
+  font-weight: bold;
+}
+
+.res-menu-header-list-line {
+  list-style-type: none;
+  text-align: center;
+  color: rgb(141, 139, 139);
+}
+
+.res-menu-header-list-1 {
+  list-style-type: none;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  color: green;
+}
+
+.res-menu-cuisine-add {
+  font-weight: lighter;
+  font-size: 13px;
+  margin-left: 10px;
+  margin-top: -10px;
+  margin-bottom: 35px;
+  color: rgb(141, 139, 139);
+}
+
+.res-menu-list-line {
+  list-style-type: none;
+  color: rgb(141, 139, 139);
+  text-align: center;
+}
+
+.res-info-sub-header {
+  display: flex;
+  list-style-type: none;
+}
+
+.res-info-sub-header > li {
+  margin-right: 10px;
+}
+
+.menu-title {
+  font-weight: bolder;
+  font-size: 25px;
+}
+
+.menu-card-des-price > li {
+  list-style-type: none;
+  font-weight: bold;
+}
+
+.menu-card-des-price > li > h5 {
+  margin-top: 5px;
+}
+
+.menu-card-des-price > li > p {
+  color: rgb(141, 139, 139);
+  margin-left: 10px;
+  margin-top: -15px;
+  margin-bottom: 50px;
+  font-weight: normal;
 }
