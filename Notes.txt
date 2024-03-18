@@ -414,3 +414,43 @@ Dynamic Routing :
 - path: "/restaurant/:resId"
 the :resId is the Dynamic route that will be changed for every other restaurant.
 
+EP8 Notes - 
+
+Classbased Components : It has class which extends React.component which have render method and that returns some piece of JSX.
+
+class <class_name> extends React.component{
+  constructor(props){
+    super(props);
+
+  }
+  render(){
+    //it returns jsx
+    return(
+      //jsx code
+    )
+  }
+}
+
+export default <class_name>;
+
+with help of React.component React gets to know that it is a class based Component
+
+render() - with help of this the jsx written inside it is displayed on the web
+
+we need to export it.
+
+this.setState({object}) - it helps to update state variables. 
+
+
+Life Cycle of React Classbased Component: 
+When the Class is mounted on to the DOM, The instance of the class is created and the constructor is called then the render method is called and after that componentDidMount is called
+
+Instance of Class created -> Constructor is called -> Render method is called -> componentDidMount method is called
+
+Parent Constructor -> Parent Render -> (All the Child Components gets exec) Child Constructor -> Child Render -> Child componentDidMount -> Parent componentDidMount
+
+Why componentDidMount() method is used? - There are somthings that we do once the component is mounted successfully. It is used to make API calls.
+
+Why API calls are made inside componentDidMount() method? - Because Once the instance of the class is created the constructor is called then the component is rendered and after that the API call is made so that the data gets filled inside the rendered component.
+
+//1:10:00 next topic making API call inside Classbased component

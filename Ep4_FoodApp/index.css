@@ -239,3 +239,10 @@ h1 {
   margin-bottom: 50px;
   font-weight: normal;
 }
+
+.user-card {
+  padding: 10px;
+  height: 300px;
+  width: 250px;
+  border: 5px solid black;
+}
