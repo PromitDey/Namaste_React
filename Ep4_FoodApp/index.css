@@ -240,9 +240,52 @@ h1 {
   font-weight: normal;
 }
 
+.body-about {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .user-card {
+  display: flex;
   padding: 10px;
-  height: 300px;
-  width: 250px;
+  height: 400px;
+  width: 300px;
   border: 5px solid black;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-user-avatar {
+  height: 200px;
+  width: 200px;
+  border: 2px solid black;
+  border-radius: 99px;
+}
+
+.about-user-info {
+  text-align: center;
+}
+
+.contact-icons-container {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-icons {
+  font-size: 30px;
+  padding: 10px;
+}
+
+.btn-mail-icon {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.about-icon-link{
+  color: inherit;
+
 }

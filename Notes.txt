@@ -453,4 +453,82 @@ Why componentDidMount() method is used? - There are somthings that we do once th
 
 Why API calls are made inside componentDidMount() method? - Because Once the instance of the class is created the constructor is called then the component is rendered and after that the API call is made so that the data gets filled inside the rendered component.
 
-//1:10:00 next topic making API call inside Classbased component
+componentDidUpdate() method - It is called at last when the API call is made and the component has been re-rendered using the API data fetched.
+
+
+Life Cycle of React Classbased component if there is more than one children: 
+
+- It works in two phases namely "Render Phase" where to optimize the code react batches all the constructors and render methods of all the children and render them and "Commit Phase" here are the Updation to the DOM like componentDidMount method is happened in batch for all the children as DOM manipulation is very expensive.
+
+- Example: 
+class about extends React.component{
+  constructor(props){
+    super(props);
+    console.loG("Parent Constructor");
+  }
+
+  componentDidMount(){
+    console.log("Parent componentDidMount");
+  }
+
+  render(){
+    console.loG("Parent Render");
+    <Child name = {"Child1"} />
+    <Child name = {"Child2"} />
+  }
+}
+
+class Child extends React.component{
+  constructor(props){
+    super(props);
+    console.loG(this.props.name +  "Constructor");
+  }
+
+  componentDidMount(){
+    console.log(this.props.name + "componentDidMount");
+  }
+
+  render(){
+    console.loG(this.props.name + "Render");
+  }
+}
+
+- Output: 
+
+Parent Constructor
+Parent Render
+
+  //Here react batches the children components in Render Phase to optimize
+  Child1 Constructor
+  Child1 Render
+
+  Child2 Constructor
+  Child2 Render
+
+  //Here react batches the DOM updates of the children components in Commit Phase as because DOM manipulation is expensive
+  Child1 componentDidMount
+  Child2 componentDidMount
+
+Parent componentDidMount
+
+React Life Cycle when a API CALL is made:
+ * ---MOUNTING---
+ * Constructor (Local state vars are created and given dummy data)
+ * Render (It is rendered on the web using dummy data)
+ *    <HTML> (with dummy data)
+ * componentdidMount()
+ *    API CALL is made
+ *    this.setState() (local state var is upated with the Json Data fetched from API)
+ * 
+ * ---UPDATING---
+ * Render(with API Data) the component is re-rendered as the local state var is updated
+ * <HTML> (with API Data)
+ * componentDidUpdate()
+ * 
+ * ---UNMOUNTING---
+ * componentWillUnmount()
+ * when we move to another page the data that was displayed in the UI gets unmounted resulting in triggering this method
+
+didn't do the last 45 mins live session rec in EP8
+
+
