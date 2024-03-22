@@ -285,7 +285,16 @@ h1 {
   cursor: pointer;
 }
 
-.about-icon-link{
+.about-icon-link {
   color: inherit;
+}
 
+.wifi-green {
+  color: green;
+  font-weight: bolder;
+}
+
+.wifi-red {
+  color: red;
+  font-weight: bolder;
 }

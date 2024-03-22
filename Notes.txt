@@ -531,4 +531,19 @@ React Life Cycle when a API CALL is made:
 
 didn't do the last 45 mins live session rec in EP8
 
+EP9 Notes - 
+
+learned about custom Hooks
+
+Lazy Loading/Chunking/Code Spitting - When the size of our code bundle starts increasing we use these to reduce the load of loading them on the website
+
+const Grocery = lazy(() => {
+  import("./components/grocery")
+});
+
+with these whenever our web page will be loaded it will be not loaded with the grocery component in it but when it will be req it will be loaded into the page.
+
+we shold use <suspense> tag as because react is very fast and whenever the lazy method will be called it will take some time to fetch the data and if we dont use suspense then our code will break as because while lazy is called it didnt returned anything and the render suspended.
+
+suspense has a placeholder called fallback={jsx} here we can display any message <h1>Loading</h1> for the time until the lazy is completed fetching the data.
 

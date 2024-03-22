@@ -6,27 +6,16 @@
  * Del Time | Cost For Two
  */
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { RES_API1, RES_API2 } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-
   const { resId } = useParams();
-  //console.log(resId);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(RES_API1 + resId + RES_API2);
-    const jsonData = await data.json();
-    //console.log(jsonData);
-    setResInfo(jsonData.data);
-  };
+  //custom hook that is fetching the restaurant menu
+  const resInfo = useRestaurantMenu(resId);
 
   if (resInfo == null) return <Shimmer />;
 
