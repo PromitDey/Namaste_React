@@ -1,26 +1,40 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { Header } from "./components/Header"; //named import
 //import About from "./components/About";
 import Body from "./components/Body";
 import Error from "./components/Error";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/UserContext.js";
 
-//Chunking
-//Code Splitting
-//Dynamic Bundling
+//optimizing - code splitting/lazy loading
 const About = lazy(() => {
   return import("./components/About");
 });
 
 const AppLayout = () => {
+  //Authentication Code
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    //some API call to get user name
+    const data = {
+      name: "Promit Dey",
+    };
+    setUserName(data.name);
+  }, []);
+  console.log(userName);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    //default user
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      {/* Promit Dey */}
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -41,10 +55,6 @@ const appRouter = createBrowserRouter([
             <About />
           </Suspense>
         ),
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
       },
       {
         path: "/restaurant/:resId",

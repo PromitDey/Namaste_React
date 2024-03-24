@@ -1,9 +1,10 @@
-import React from "react";
-import ResCard from "./RestaurantCard";
+import React, { useContext } from "react";
+import ResCard, { openResCard } from "./ResCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   //local state variable
@@ -13,6 +14,8 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  const IsOpenRes = openResCard(ResCard);
 
   useEffect(() => {
     fetchData();
@@ -37,32 +40,35 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
 
+  //modifying userContext
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   //conditional rendering
   if (listOfRestaurants.length == 0) {
     return <Shimmer />;
   }
 
-  if(onlineStatus === false){
-    return(
+  if (onlineStatus === false) {
+    return (
       <h1>Looks like you're Offline !! Check your internet connection...</h1>
-    )
+    );
   }
 
   //using ternary operator
   return (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex m-2.5">
+        <div className="border-2 border-black rounded-xl">
           <input
             type="text"
-            className="search-box"
+            className="border-2 border-black rounded-lg"
             value={searchText}
             onChange={function (e) {
               setSearchText(e.target.value);
             }}
           ></input>
           <button
-            className="search-btn"
+            className="cursor-pointer ml-2.5 border-1 border-black pl-2 pr-2 font-semibold rounded-lg "
             onClick={() => {
               //fiter the restaurants according to the search text and update the UI
               //console.log(searchText);
@@ -81,7 +87,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="cursor-pointer ml-2.5 border-2 border-black pl-2 pr-2 font-semibold rounded-lg "
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
               (restaurant) => restaurant.info.avgRating > 4.5
@@ -92,19 +98,32 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
+        {/* Modifying UserContext */}
+        {/* <div className="ml-4">
+          UserName:
+          <input
+            className="border-2 border-black px-1"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          ></input>
+        </div> */}
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center">
         {filteredRestaurants.map(function (restaurant) {
           //looping over the resList to iterate and returning each and every resCard
           //always give a key while using map
           return (
             <Link
-              className="res-container-Link"
+              className="decoration-inherit"
               key={restaurant.info.id}
               to={"/restaurant/" + restaurant.info.id}
             >
-              <ResCard resData={restaurant} />
+              {restaurant?.info?.isOpen ? (
+                <IsOpenRes resData={restaurant} />
+              ) : (
+                <ResCard resData={restaurant} />
+              )}
             </Link>
           );
         })}

@@ -5,7 +5,7 @@ import UserClass from "./UserClass.js";
 //Funcitonal Component
 const About = () => {
   return (
-    <div className="body-about">
+    <div className="flex flex-col justify-center items-center">
       <h1>About Us</h1>
       <p>Hello Welcome to পেট পুজো</p>
       <div>

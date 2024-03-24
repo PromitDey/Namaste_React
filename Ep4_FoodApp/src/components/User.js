@@ -38,25 +38,32 @@ const User = (props) => {
   const { name, location, avatar_url, bio } = userInfo;
 
   return (
-    <div className="user-card">
+    <div className="flex flex-col p-2.5 uCard-custom border-2 border-solid border-black rounded-lg items-center">
       <img
-        className="about-user-avatar"
+        className="custom2 border-2 border-solid border-black"
         src={avatar_url}
         alt={"GitHub Avatar"}
       />
-      <div className="about-user-info">
-        <h3>Name: {name}</h3>
+      <div className="text-center">
+        <h3 className="text-2xl font-semibold">Name: {name}</h3>
         <h3>Location: {location}</h3>
-        <h3>Bio: {bio}</h3>
-        <div className="contact-icons-container">
+        <h3>{bio}</h3>
+        <div className="flex justify-center text-3xl my-7">
           <button className="btn-mail-icon" onClick={handleEmailCopy}>
-            <MdOutlineEmail className="contact-icons" />
+            <MdOutlineEmail className="mx-2" />
           </button>
           <Link to="https://github.com/PromitDey" className="about-icon-link">
-            <AiOutlineGithub className="contact-icons" />
+            <AiOutlineGithub className="mx-2" />
           </Link>
-          <Link to ="https://www.linkedin.com/in/promitdey097/" className="about-icon-link"><AiOutlineLinkedin className="contact-icons" /></Link>
-          <Link to ="https://twitter.com/PromitDey5" className="about-icon-link"><FaXTwitter className="contact-icons" /></Link>
+          <Link
+            to="https://www.linkedin.com/in/promitdey097/"
+            className="about-icon-link"
+          >
+            <AiOutlineLinkedin className="mx-2" />
+          </Link>
+          <Link to="https://twitter.com/PromitDey5" className="about-icon-link">
+            <FaXTwitter className="mx-2" />
+          </Link>
         </div>
       </div>
     </div>

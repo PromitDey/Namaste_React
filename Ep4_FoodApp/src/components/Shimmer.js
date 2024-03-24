@@ -1,24 +1,27 @@
 const Shimmer = () => {
   return (
-    <div className="shimmer-container">
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
-      <div className="shimmer-cards"></div>
+    <div className="flex flex-wrap justify-center">
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
+      <div className="w-64 h-64 border-2 rounded-lg bg-gray-300 mx-1.5 my-1.5"></div>
     </div>
   );
 };

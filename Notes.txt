@@ -547,3 +547,40 @@ we shold use <suspense> tag as because react is very fast and whenever the lazy 
 
 suspense has a placeholder called fallback={jsx} here we can display any message <h1>Loading</h1> for the time until the lazy is completed fetching the data.
 
+EP10 Notes - 
+
+Designing website - 
+- Normal CSS 
+- SCSS/SASS
+- Styled components
+
+library/frameworks - 
+- Material UI
+- Bootstrap
+- Chakra UI
+- Ant CSS
+- Tailwind CSS
+
+EP11 Notes - 
+
+Higher Order Components : It is a function that takes a component and returns a component.
+Why - Like where we need to tweak some elements
+
+- Controlled and Uncontrolled Components
+- Lifting the state up
+- Props Drilling: we should not do props drilling, to avoid this react have a superpower called React Context.
+- React Context: It is like global, and any one any level deep can access it
+
+//2:20:00 React Context
+
+const UserContext = createContext({
+  loggedInUser: "Default User",
+});
+
+Hook: const data = useContext(UserContext);
+How to use context? by useContext() hook
+In class based component: <UserContext.consumer>{(loggedInUser)=><h1>{loggedInUser}</h1>}</UserContext.consumer>
+How to update React Context? using <<reactContextFileName>.provier>wrap where we like to update</<reactContextFileName>.provier> we can use this multiple times
+
+Redux is a state management library. It is a replace for React Context
+

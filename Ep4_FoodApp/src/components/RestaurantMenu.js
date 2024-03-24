@@ -6,16 +6,19 @@
  * Del Time | Cost For Two
  */
 
-import React from "react";
+import React, { useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
   //custom hook that is fetching the restaurant menu
   const resInfo = useRestaurantMenu(resId);
+
+  const [showIdx, setShowIdx] = useState(0); //accordion
 
   if (resInfo == null) return <Shimmer />;
 
@@ -31,15 +34,19 @@ const RestaurantMenu = () => {
 
   const { slaString } = resInfo?.cards[0]?.card?.card?.info?.sla;
 
-  const { cards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
-  //console.log(cards);
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card.card?.["@type"] ==
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
   return (
-    <div className="res-info">
-      <div className="res-menu-header">
+    <div className="justify-between pr-custom mt-12">
+      <div className="flex mt-12 justify-between">
         <div>
-          <h1>{name}</h1>
-          <div className="res-menu-cuisine-add">
+          <h1 className="text-4xl font-semibold">{name}</h1>
+          <div className="font-base text-sm ml-2.5 mb-9 t-color-custom">
             <p>{cuisines.join(", ")}</p>
             <p>
               {areaName} , {city}
@@ -47,44 +54,35 @@ const RestaurantMenu = () => {
           </div>
         </div>
         <div>
-          <ul className="box">
-            <li className="res-menu-header-list-1">{avgRating}</li>
-            <li className="res-menu-header-list-line">---------</li>
-            <li className="res-menu-header-list">{totalRatingsString}</li>
+          <ul className="border-2 border-solid t-color-custom rounded-xl">
+            <li className="pt-3 list-none text-center text-lg font-bold text-green-700">
+              {avgRating}
+            </li>
+            <li className="list-none text-center text-lg t-color-custom">
+              ---------
+            </li>
+            <li className="p-2 list-none text-xs t-color-custom font-bold">
+              {totalRatingsString}
+            </li>
           </ul>
         </div>
       </div>
-      <li className="res-menu-list-line">
-        -----------------------------------------------------------------------------------------------------------------------------------------
+      <li className="list-none text-center t-color-custom">
+        --------------------------------------------------------------------------------------------------------------------------------
       </li>
-      <div className="res-info-sub-header">
-        <li>⏱️ {slaString}</li>
-        <li>💰 {costForTwoMessage}</li>
+      <div className="flex list-none pb-5">
+        <li className="mr-2.5">⏱️ {slaString}</li>
+        <li className="mr-2.5">💰 {costForTwoMessage}</li>
       </div>
       <div className="menu">
-        {cards.slice(1, -2).map((e, index) => (
-          <div key={index}>
-            <h3 className="menu-title">
-              {e?.card?.card?.title} (
-              {e?.card?.card?.itemCards && e.card.card.itemCards.length})
-            </h3>
-            <div className="menu-card">
-              <div className="menu-card-des-price">
-                {e?.card?.card?.itemCards &&
-                  e?.card?.card?.itemCards.map((item) => (
-                    <li key={item.card.info.id}>
-                      {item.card.info.name}
-                      <h5>
-                        ₹{" "}
-                        {item.card.info.price / 100 ||
-                          item.card.info.defaultPrice / 100}
-                      </h5>
-                      <p>{item.card.info.description}</p>
-                    </li>
-                  ))}
-              </div>
-            </div>
-          </div>
+        {categories.map((category, index) => (
+          //controlled component
+          <RestaurantCategory
+            data={category?.card?.card}
+            key={index}
+            showItems={index == showIdx && true}
+            setShowIdx = {() => setShowIdx(index)}
+          />
         ))}
       </div>
     </div>
